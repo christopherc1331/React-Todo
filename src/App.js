@@ -38,14 +38,25 @@ class App extends React.Component {
         id: Date.now(),
         completed: false
       };
-      console.log(newTask);
 
       this.setState({
-        tasks: [...tasks, newTask]
+        tasks: [...this.state.tasks, newTask]
       });
     } else {
       alert("This item already exists!");
     }
+  };
+
+  toggleTask = taskId => {
+    console.log(this.state.tasks);
+    this.setState({
+      tasks: this.state.tasks.map(item => {
+        if (item.id === taskId) {
+          return { ...item, completed: !item.completed };
+        }
+        return item;
+      })
+    });
   };
 
   render() {
@@ -53,7 +64,7 @@ class App extends React.Component {
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoForm addTask={this.addTask} />
-        <TodoList tasks={this.state.tasks} />
+        <TodoList toggleTask={this.toggleTask} tasks={this.state.tasks} />
       </div>
     );
   }

@@ -5,10 +5,12 @@ import React from "react";
 import Todo from "./Todo.js";
 
 const TodoList = props => {
+  console.log(props);
+
   return (
     <div>
       {props.tasks.map(task => (
-        <Todo key={task.id} task={task} />
+        <Todo toggleTask={props.toggleTask} key={task.id} task={task} />
       ))}
     </div>
   );
