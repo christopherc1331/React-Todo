@@ -28,11 +28,31 @@ class App extends React.Component {
     };
   }
 
+  addTask = (event, task) => {
+    event.preventDefault();
+    const existingTask = this.state.tasks.filter(item => item.task === task);
+
+    if (existingTask.length === 0) {
+      const newTask = {
+        task: task,
+        id: Date.now(),
+        completed: false
+      };
+      console.log(newTask);
+
+      this.setState({
+        tasks: [...tasks, newTask]
+      });
+    } else {
+      alert("This item already exists!");
+    }
+  };
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm />
+        <TodoForm addTask={this.addTask} />
         <TodoList tasks={this.state.tasks} />
       </div>
     );
