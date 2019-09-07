@@ -1,0 +1,9 @@
+.task {
+  text-decoration: none;
+  color: red;
+}
+
+.task.completed {
+  text-decoration: line-through;
+  color: green;
+}
